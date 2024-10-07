@@ -6,4 +6,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Views\Products\NewFolder\**" />
+    <Content Remove="Views\Products\NewFolder\**" />
+    <EmbeddedResource Remove="Views\Products\NewFolder\**" />
+    <None Remove="Views\Products\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Categorie.cshtml" />
+    <Content Remove="Views\Products\Category1.cshtml" />
+    <Content Remove="Views\Products\Category2.cshtml" />
+    <Content Remove="Views\Products\Category3.cshtml" />
+    <Content Remove="Views\Products\ProductList.cshtml" />
+  </ItemGroup>
+
 </Project>

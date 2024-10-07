@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ProjetValilou.Models.Product>
+
+<div class="product-list">
+    @foreach (var product in Model)
+    {
+        <div class="product-item">
+            <img src="@product.ImageUrl" alt="@product.Name" />
+            <h2>@product.Name</h2>
+            <p>@product.Description</p>
+            <p>Prix : @product.Price €</p>
+        </div>
+    }
+</div>

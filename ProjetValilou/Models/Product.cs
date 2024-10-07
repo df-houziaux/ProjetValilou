@@ -1,12 +1,18 @@
-﻿// Fichier: Models/Product.cs
+﻿using System.ComponentModel.DataAnnotations;
+
 namespace ProjetValilou.Models
 {
     public class Product
     {
-        public int Id { get; set; } // Identifiant unique pour chaque produit
-        public string Name { get; set; } // Nom du produit
-        public string ImageUrl { get; set; } // URL de l'image du produit
-        public string Description { get; set; } // Description du produit (optionnel)
-        public decimal Price { get; set; } // Prix du produit (optionnel)
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "Le nom est requis.")]
+        public required string Name { get; set; }
+
+        public string? ImageUrl { get; set; }
+        public string? Description { get; set; }
+
+        [Range(0.01, double.MaxValue, ErrorMessage = "Le prix doit être supérieur à zéro.")]
+        public decimal Price { get; set; }
     }
 }
