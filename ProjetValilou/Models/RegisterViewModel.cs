@@ -5,14 +5,17 @@ namespace ProjetValilou.Models
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "Le nom complet est requis.")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Le nom complet ne doit contenir que des lettres et des espaces.")]
         public string FullName { get; set; }
 
         [Required(ErrorMessage = "L'adresse e-mail est requise.")]
-        [EmailAddress(ErrorMessage = "L'adresse e-mail n'est pas valide.")]
+        [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "L'adresse e-mail n'est pas valide.")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Le mot de passe est requis.")]
         [StringLength(100, ErrorMessage = "Le mot de passe doit avoir au moins {2} caractères.", MinimumLength = 6)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$",
+            ErrorMessage = "Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Veuillez confirmer votre mot de passe.")]
