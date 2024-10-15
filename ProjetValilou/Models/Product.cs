@@ -14,5 +14,7 @@ namespace ProjetValilou.Models
 
         [Range(0.01, double.MaxValue, ErrorMessage = "Le prix doit être supérieur à zéro.")]
         public decimal Price { get; set; }
+        // Nouvelle propriété pour les ingrédients
+        public string Ingredients { get; set; } // Vous pouvez aussi utiliser une liste si besoin
     }
 }
