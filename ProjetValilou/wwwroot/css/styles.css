@@ -1,4 +1,17 @@
-﻿/* Grille de produits */
+﻿/* Styles de fond pour les catégories */
+.background-category1 {
+    background-color: #E3E6F5; /* couleur violet pâle pour la catégorie 1 */
+}
+
+.background-category2 {
+    background-color: #F7E8C5; /* couleur jaune pâle pour la catégorie 2 */
+}
+
+.background-category3 {
+    background-color: #F6D5D5; /* couleur rose pâle pour la catégorie 3 */
+}
+
+/* Grille de produits */
 .product-list-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grille flexible */
@@ -14,7 +27,6 @@
 
 /* Style de la carte avec effet flip */
 .flip-card {
-    background-color: transparent;
     perspective: 1000px;
     width: 100%;
     height: 350px;
@@ -48,7 +60,6 @@
 }
 
 .flip-card-front {
-    background-color: #f0f0f0;
     color: black;
 }
 
