@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProjetValilou.Models.Product>
 
 @{
-    ViewData["Title"] = "Produits de la Catégorie";
+    ViewBag.Title = "Produits de la Catégorie";
 
     // Déterminer la classe de fond en fonction de la catégorie
     string backgroundClass = ViewBag.Category switch
@@ -13,10 +13,12 @@
     };
 }
 
-<h1>Produits de la Catégorie</h1>
+<div style="text-align: center;">
+    <h1 class="category-title">Produits de la Catégorie</h1>
+</div>
+
 
 <div class="product-list-grid @backgroundClass">
-    <!-- Appliquer la classe ici -->
     @foreach (var product in Model)
     {
         <div class="product-item">

@@ -63,23 +63,25 @@ namespace ProjetValilou.Controllers
         // Afficher les produits de la catégorie "Lavande"
         public IActionResult Category1()
         {
+            ViewBag.Category = "category1";  // Ajout du nom de la catégorie
             var products = AllProducts.Where(p => p.Name.Contains("Lavande")).ToList();
-            return View("Category", products);  // Renvoie la vue 'Category' avec tous les produits de la catégorie Lavande
+            return View("Category", products);
         }
 
-        // Afficher les produits de la catégorie "Vanille"
         public IActionResult Category2()
         {
+            ViewBag.Category = "category2";
             var products = AllProducts.Where(p => p.Name.Contains("Vanille")).ToList();
             return View("Category", products);
         }
 
-        // Afficher les produits de la catégorie "Rosée"
         public IActionResult Category3()
         {
+            ViewBag.Category = "category3";
             var products = AllProducts.Where(p => p.Name.Contains("Rosée")).ToList();
             return View("Category", products);
         }
-       
+
+
     }
 }

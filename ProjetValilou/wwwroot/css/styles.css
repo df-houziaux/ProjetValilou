@@ -1,20 +1,35 @@
-﻿/* Styles de fond pour les catégories */
+﻿div h1.category-title {
+    text-align: center !important;
+}
+
+
+
+/* Styles pour centrer le titre */
+
+.category-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Styles de fond pour les catégories */
 .background-category1 {
-    background-color: #E3E6F5; /* couleur violet pâle pour la catégorie 1 */
+    background-color: #E3E6F5; /* Violet pâle */
 }
 
 .background-category2 {
-    background-color: #F7E8C5; /* couleur jaune pâle pour la catégorie 2 */
+    background-color: #F7E8C5; /* Jaune pâle */
 }
 
 .background-category3 {
-    background-color: #F6D5D5; /* couleur rose pâle pour la catégorie 3 */
+    background-color: #F6D5D5; /* Rose pâle */
 }
 
 /* Grille de produits */
 .product-list-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grille flexible */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
 }
@@ -23,6 +38,8 @@
 .product-item {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* Style de la carte avec effet flip */
@@ -30,6 +47,9 @@
     perspective: 1000px;
     width: 100%;
     height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .flip-card-inner {
@@ -51,44 +71,5 @@
     backface-visibility: hidden;
     border: 1px solid #ccc;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-}
-
-.flip-card-front {
-    color: black;
-}
-
-.flip-card-back {
-    background-color: #333;
-    color: white;
-    transform: rotateY(180deg);
-}
-
-.flip-card img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
-
-.flip-card h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-.flip-card p {
-    font-size: 1em;
-}
-
-/* Adaptation mobile */
-@media (max-width: 600px) {
-    .product-list-grid {
-        grid-template-columns: 1fr; /* Une seule colonne sur petit écran */
-    }
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
