@@ -19,11 +19,9 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <!-- Lien vers la page d'accueil -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
                         </li>
-                        <!-- Lien vers la page des produits avec sous-catégories -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" href="#" id="produitsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Produits
@@ -34,7 +32,6 @@
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Category3">Catégorie 3</a></li>
                             </ul>
                         </li>
-                        <!-- Lien vers la page d'inscription -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Inscription</a>
                         </li>
@@ -43,9 +40,10 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            @RenderBody() <!-- Contenu dynamique ici -->
         </main>
     </div>
 
@@ -54,6 +52,7 @@
             &copy; 2024 - ProjetValilou - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
