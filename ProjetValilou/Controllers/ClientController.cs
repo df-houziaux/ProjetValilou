@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjetValilou.Data;
 using ProjetValilou.Models; // S'assurer que ce namespace est correct pour RegisterViewModel
 
 namespace ProjetValilou.Controllers
 {
     public class ClientController : Controller
     {
+
+        private readonly ApplicationDbContext _context;
+
+        public ClientController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         // GET: /Account/Register
         [HttpGet]
         public IActionResult Inscription()
@@ -21,6 +30,8 @@ namespace ProjetValilou.Controllers
             if (ModelState.IsValid)
             {
                 // Traiter l'inscription ici (sauvegarde dans la base de données, etc.)
+                _context.Clients.Add(model);
+                _context.SaveChanges();
 
                 // Redirection après inscription réussie
                 return RedirectToAction("Index", "Home");
