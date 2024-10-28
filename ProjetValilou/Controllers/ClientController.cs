@@ -3,11 +3,11 @@ using ProjetValilou.Models; // S'assurer que ce namespace est correct pour Regis
 
 namespace ProjetValilou.Controllers
 {
-    public class AccountController : Controller
+    public class ClientController : Controller
     {
         // GET: /Account/Register
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Inscription()
         {
             // Retourne la vue Register.cshtml
             return View();
@@ -16,7 +16,7 @@ namespace ProjetValilou.Controllers
         // POST: /Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(RegisterViewModel model)
+        public IActionResult Register(Client model)
         {
             if (ModelState.IsValid)
             {

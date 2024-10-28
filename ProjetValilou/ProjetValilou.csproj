@@ -7,18 +7,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Products\NewFolder\**" />
-    <Content Remove="Views\Products\NewFolder\**" />
-    <EmbeddedResource Remove="Views\Products\NewFolder\**" />
-    <None Remove="Views\Products\NewFolder\**" />
+    <Compile Remove="Views\Product\NewFolder\**" />
+    <Content Remove="Views\Product\NewFolder\**" />
+    <EmbeddedResource Remove="Views\Product\NewFolder\**" />
+    <None Remove="Views\Product\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Views\Categorie.cshtml" />
-    <Content Remove="Views\Products\Category1.cshtml" />
-    <Content Remove="Views\Products\Category2.cshtml" />
-    <Content Remove="Views\Products\Category3.cshtml" />
-    <Content Remove="Views\Products\ProductList.cshtml" />
+    <Content Remove="Views\Product\Category1.cshtml" />
+    <Content Remove="Views\Product\Category2.cshtml" />
+    <Content Remove="Views\Product\Category3.cshtml" />
+    <Content Remove="Views\Product\ProductList.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

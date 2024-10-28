@@ -2,8 +2,11 @@
 
 namespace ProjetValilou.Models
 {
-    public class RegisterViewModel
+    public class Client
+
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Le nom complet est requis.")]
         [RegularExpression(@"^[A-Z][a-z]+ [A-Z][a-z]+$", ErrorMessage = "Le prénom et le nom doivent commencer par une majuscule, être séparés par un espace, et ne contenir que des lettres.")]
         public string FullName { get; set; }
