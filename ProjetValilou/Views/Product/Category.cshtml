@@ -3,12 +3,11 @@
 @{
     ViewBag.Title = "Produits de la Catégorie";
 
-    // Déterminer la classe de fond en fonction de la catégorie
     string backgroundClass = ViewBag.Category switch
     {
-        "category1" => "background-category1", // Violet pâle
-        "category2" => "background-category2", // Jaune pâle
-        "category3" => "background-category3", // Rose pâle
+        "category1" => "background-category1",
+        "category2" => "background-category2",
+        "category3" => "background-category3",
         _ => ""
     };
 }
@@ -17,12 +16,26 @@
     <h1 class="category-title">Produits de la Catégorie</h1>
 </div>
 
-<div class="product-list-grid @backgroundClass">
+<div class="header">
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Rechercher un produit..." />
+        <select id="searchFilter" class="search-filter">
+            <option value="name">Nom</option>
+            <option value="price">Prix</option>
+            <option value="ingredient">Ingrédient</option>
+        </select>
+        <div class="cart-icon">
+            <img src="~/images/panier.png" alt="Panier" />
+            <span id="cartCount" class="cart-count">0</span> <!-- Compteur du panier -->
+        </div>
+    </div>
+</div>
+
+<div class="product-list-grid @backgroundClass" id="product-container">
     @foreach (var product in Model)
     {
-        <div class="flip-card">
+        <div class="flip-card" data-name="@product.Name" data-price="@product.Price" data-ingredient="@product.Ingredients">
             <div class="flip-card-inner">
-                <!-- Face avant de la carte -->
                 <div class="flip-card-front">
                     <div class="card">
                         <img src="@product.ImageUrl" alt="@product.Name" class="card-img-top">
@@ -33,17 +46,23 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Face arrière de la carte -->
                 <div class="flip-card-back">
                     <h2>@product.Name</h2>
                     <p>Ingrédients :</p>
                     <p>@product.Ingredients</p>
                 </div>
             </div>
+            <div class="cart-buttons">
+                <!-- Conteneur pour les boutons -->
+                <button class="add-to-cart-btn">Ajoute</button>
+                <button class="remove-from-cart-btn" style="display: none;">Suppression</button> 
+            </div>
         </div>
     }
 </div>
 
-<!-- Lien vers le fichier CSS -->
+<!-- Inclusion de jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Inclusion de votre script JS -->
+<script src="~/js/products.js"></script>
 <link rel="stylesheet" href="~/css/styles.css" />

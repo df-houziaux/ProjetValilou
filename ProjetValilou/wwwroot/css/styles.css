@@ -1,16 +1,17 @@
-﻿body {
+﻿/* Styles de base */
+body {
     margin: 0;
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Assure que le corps prend au moins la hauteur de la fenêtre */
+    min-height: 100vh;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding-bottom: 9vh; /* Ajoute un espacement en bas pour éviter le chevauchement avec le footer */
+    padding-bottom: 9vh;
 }
 
 .footer {
@@ -22,6 +23,7 @@
     text-align: center;
 }
 
+/* Titre de la catégorie */
 .category-title {
     text-align: center;
     font-size: 2.5em;
@@ -29,38 +31,89 @@
     color: #333;
 }
 
+/* Header avec barre de recherche et icône du panier */
+.header {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    width: 250px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.search-filter {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+    .cart-icon img {
+        width: 30px;
+        height: 30px;
+    }
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8em;
+}
+
 /* Styles de fond pour les catégories */
 .background-category1 {
-    background-color: #E3E6F5; /* Violet pâle */
+    background-color: #E3E6F5;
 }
 
 .background-category2 {
-    background-color: #F7E8C5; /* Jaune pâle */
+    background-color: #F7E8C5;
 }
 
 .background-category3 {
-    background-color: #F6D5D5; /* Rose pâle */
+    background-color: #F6D5D5;
 }
 
-/* Grille de produits décalée vers la droite */
+/* Grille de produits */
 .product-list-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Taille minimale pour chaque colonne */
-    gap: 20px; /* Espace entre les cartes */
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 60px; /* Vous pouvez augmenter ce padding si nécessaire */
     margin: 0 auto;
-    max-width: 1200px;
-    box-sizing: border-box;
-    padding-left: 7%;
+    max-width: 1200px; /* Limite la largeur maximale */
+    width: 90%; /* Ajustez la largeur selon vos besoins */
+    box-sizing: border-box; /* Assure que le padding est inclus dans la largeur */
     flex-grow: 1;
 }
-
 
 /* Styles de la carte */
 .flip-card {
     margin: auto;
     width: 100%;
-    max-width: 280px;
+    max-width: 270px;
 }
 
 .card {
@@ -73,10 +126,9 @@
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
-    margin-bottom: 20px; /* Ajoute un espace en bas des cartes */
+    margin-bottom: 30px; /* Augmentez l'espace entre les cartes */
 }
 
-    /* Image dans la carte */
     .card img {
         width: 100%;
         height: 300px;
@@ -99,13 +151,13 @@
     font-size: 1em;
 }
 
-
+/* Animation de la carte */
 .flip-card {
     background-color: transparent;
     width: 300px;
     height: 400px;
     perspective: 1000px;
-    margin: 10px;
+    margin: 40px;
 }
 
 .flip-card-inner {
@@ -141,15 +193,33 @@
     transform: rotateY(180deg);
 }
 
-/* Background colors based on category */
-.background-category1 {
-    background-color: #e6e6fa;
+/* Styles pour le conteneur des boutons */
+.cart-buttons-container {
+    margin-top: 100px; /* Espace entre la ligne de cartes et les boutons */
+    text-align: center; /* Centrer les boutons si nécessaire */
 }
 
-.background-category2 {
-    background-color: #fffacd;
+/* Styles pour les boutons de gestion du panier */
+.cart-buttons {
+    display: flex; /* Utiliser le flexbox pour aligner les boutons sur la même ligne */
+    justify-content: space-between; /* Espace entre les boutons */
+    padding: 10px; /* Réduit l'espace autour des boutons */
 }
 
-.background-category3 {
-    background-color: #ffe4e1;
-}
+    .cart-buttons button {
+        flex: 1; /* Permet aux boutons de prendre un espace égal */
+        margin: 0 5px; /* Ajoute une marge entre les boutons */
+        padding: 5px; /* Réduit le padding pour rendre les boutons plus petits */
+        border: 1px solid black; /* Ajoute un contour noir */
+        border-radius: 5px; /* Coins arrondis */
+        background-color: transparent; /* Pas de couleur de fond */
+        color: black; /* Couleur du texte noire */
+        cursor: pointer; /* Pointeur pour indiquer qu'il s'agit d'un bouton */
+        transition: background-color 0.3s; /* Effet de transition pour le changement de couleur */
+        font-size: 0.9em; /* Réduit la taille de la police */
+        text-align: center; /* Centre le texte */
+    }
+
+        .cart-buttons button:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Couleur au survol (translucide) */
+        }
