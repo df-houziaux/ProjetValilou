@@ -21,12 +21,13 @@
         <input type="text" id="searchInput" class="search-bar" placeholder="Rechercher un produit..." />
         <select id="searchFilter" class="search-filter">
             <option value="name">Nom</option>
-            <option value="price">Prix</option>
             <option value="ingredient">Ingrédient</option>
+            <option value="price-asc">Prix - Moins Cher au Plus Cher</option>
+            <option value="price-desc">Prix - Plus Cher au Moins Cher</option>
         </select>
         <div class="cart-icon">
             <img src="~/images/panier.png" alt="Panier" />
-            <span id="cartCount" class="cart-count">0</span> <!-- Compteur du panier -->
+            <span id="cartCount" class="cart-count">0</span> 
         </div>
     </div>
 </div>
@@ -61,8 +62,6 @@
     }
 </div>
 
-<!-- Inclusion de jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Inclusion de votre script JS -->
 <script src="~/js/products.js"></script>
 <link rel="stylesheet" href="~/css/styles.css" />

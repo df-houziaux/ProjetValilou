@@ -37,9 +37,9 @@ namespace ProjetValilou.Controllers
             // Remplacez ceci par la logique pour obtenir les données réelles depuis votre base de données
             return new List<Product>
         {
-        new Product { Name = "Bougie 1", ImageUrl = "bougie1.jpg" },
-        new Product { Name = "Bougie 2", ImageUrl = "bougie2.jpg" },
-        new Product { Name = "Bougie 3", ImageUrl = "bougie3.jpg" }
+        new Product { Name = "Bougie 1", ImageUrl = "photo1carouselle.jpg" },
+        new Product { Name = "Bougie 2", ImageUrl = "photo2carouselle.jpg" },
+        new Product { Name = "Bougie 3", ImageUrl = "photo3carouselle.jpg" }
         };
         }
 
