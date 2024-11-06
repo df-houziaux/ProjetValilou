@@ -83,6 +83,49 @@ body {
     font-size: 0.8em;
 }
 
+/* Conteneur des détails du panier */
+.cart-details-container {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    padding: 15px;
+    z-index: 1000;
+}
+
+    /* Affichage des détails du panier */
+    .cart-details-container.show {
+        display: block;
+    }
+
+/* Style pour les éléments du panier */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+    .cart-item:last-child {
+        border-bottom: none;
+    }
+
+.cart-item-name {
+    font-weight: bold;
+}
+
+.cart-item-price {
+    color: #666;
+    font-size: 0.9em;
+}
+
 /* Styles de fond pour les catégories */
 .background-category1 {
     background-color: #E3E6F5;
@@ -101,11 +144,11 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    padding: 60px; /* Vous pouvez augmenter ce padding si nécessaire */
+    padding: 60px;
     margin: 0 auto;
-    max-width: 1200px; /* Limite la largeur maximale */
-    width: 90%; /* Ajustez la largeur selon vos besoins */
-    box-sizing: border-box; /* Assure que le padding est inclus dans la largeur */
+    max-width: 1200px;
+    width: 90%;
+    box-sizing: border-box;
     flex-grow: 1;
 }
 
@@ -126,7 +169,7 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
-    margin-bottom: 30px; /* Augmentez l'espace entre les cartes */
+    margin-bottom: 30px;
 }
 
     .card img {
@@ -195,31 +238,30 @@ body {
 
 /* Styles pour le conteneur des boutons */
 .cart-buttons-container {
-    margin-top: 100px; /* Espace entre la ligne de cartes et les boutons */
-    text-align: center; /* Centrer les boutons si nécessaire */
+    margin-top: 100px;
+    text-align: center;
 }
 
-/* Styles pour les boutons de gestion du panier */
 .cart-buttons {
-    display: flex; /* Utiliser le flexbox pour aligner les boutons sur la même ligne */
-    justify-content: space-between; /* Espace entre les boutons */
-    padding: 10px; /* Réduit l'espace autour des boutons */
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
 }
 
     .cart-buttons button {
-        flex: 1; /* Permet aux boutons de prendre un espace égal */
-        margin: 0 5px; /* Ajoute une marge entre les boutons */
-        padding: 5px; /* Réduit le padding pour rendre les boutons plus petits */
-        border: 1px solid black; /* Ajoute un contour noir */
-        border-radius: 5px; /* Coins arrondis */
-        background-color: transparent; /* Pas de couleur de fond */
-        color: black; /* Couleur du texte noire */
-        cursor: pointer; /* Pointeur pour indiquer qu'il s'agit d'un bouton */
-        transition: background-color 0.3s; /* Effet de transition pour le changement de couleur */
-        font-size: 0.9em; /* Réduit la taille de la police */
-        text-align: center; /* Centre le texte */
+        flex: 1;
+        margin: 0 5px;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: transparent;
+        color: black;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 0.9em;
+        text-align: center;
     }
 
         .cart-buttons button:hover {
-            background-color: rgba(0, 0, 0, 0.1); /* Couleur au survol (translucide) */
+            background-color: rgba(0, 0, 0, 0.1);
         }

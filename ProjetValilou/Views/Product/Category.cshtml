@@ -25,10 +25,14 @@
             <option value="price-asc">Prix - Moins Cher au Plus Cher</option>
             <option value="price-desc">Prix - Plus Cher au Moins Cher</option>
         </select>
-        <div class="cart-icon">
-            <img src="~/images/panier.png" alt="Panier" />
-            <span id="cartCount" class="cart-count">0</span> 
-        </div>
+
+        <!-- Logo cliquable du panier -->
+        <a href="javascript:void(0);" id="cartIconLink">
+            <div class="cart-icon">
+                <img src="~/images/panier.png" alt="Panier" />
+                <span id="cartCount" class="cart-count">0</span>
+            </div>
+        </a>
     </div>
 </div>
 
@@ -54,14 +58,20 @@
                 </div>
             </div>
             <div class="cart-buttons">
-                <!-- Conteneur pour les boutons -->
-                <button class="add-to-cart-btn">Ajoute</button>
-                <button class="remove-from-cart-btn" style="display: none;">Suppression</button> 
+                <button class="add-to-cart-btn" data-product-name="@product.Name" data-product-price="@product.Price" data-product-ingredients="@product.Ingredients">Ajouter au panier</button>
+                <button class="remove-from-cart-btn" style="display: none;">Retirer du panier</button>
             </div>
         </div>
     }
 </div>
 
+<!-- Conteneur des détails du panier -->
+<div class="cart-details-container" id="cartDetailsContainer">
+    <h3>Détails du Panier</h3>
+    <ul id="cartItemsList"></ul>
+    <button id="clearCartBtn">Vider le Panier</button>
+</div>
+
+<link rel="stylesheet" href="~/css/styles.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/products.js"></script>
-<link rel="stylesheet" href="~/css/styles.css" />
