@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Produits de la Catégorie";
-
     string backgroundClass = ViewBag.Category switch
     {
         "category1" => "background-category1",
@@ -25,8 +24,6 @@
             <option value="price-asc">Prix - Moins Cher au Plus Cher</option>
             <option value="price-desc">Prix - Plus Cher au Moins Cher</option>
         </select>
-
-        <!-- Logo cliquable du panier -->
         <a href="javascript:void(0);" id="cartIconLink">
             <div class="cart-icon">
                 <img src="~/images/panier.png" alt="Panier" />
@@ -58,8 +55,7 @@
                 </div>
             </div>
             <div class="cart-buttons">
-                <button class="add-to-cart-btn" data-product-name="@product.Name" data-product-price="@product.Price" data-product-ingredients="@product.Ingredients">Ajouter au panier</button>
-                <button class="remove-from-cart-btn" style="display: none;">Retirer du panier</button>
+                <button class="add-to-cart-btn" data-product-name="@product.Name" data-product-price="@product.Price">Ajouter au panier</button>
             </div>
         </div>
     }
@@ -68,7 +64,21 @@
 <!-- Conteneur des détails du panier -->
 <div class="cart-details-container" id="cartDetailsContainer">
     <h3>Détails du Panier</h3>
-    <ul id="cartItemsList"></ul>
+    <ul id="cartItemsList">
+        <!-- Exemple d'article de panier -->
+        <li class="cart-item">
+            <span class="cart-item-name">Nom du produit</span>
+            <div class="cart-item-controls">
+                <button class="quantity-btn decrease-quantity">-</button>
+                <input type="number" class="quantity-input" value="1" min="1" />
+                <button class="quantity-btn increase-quantity">+</button>
+                <button class="remove-item-btn" data-name="Nom du produit">
+                    <img src="~/images/corbeillerouge.jpg" alt="Retirer" class="remove-item-img" />
+                </button>
+            </div>
+            <span class="cart-item-price">10 €</span>
+        </li>
+    </ul>
     <button id="clearCartBtn">Vider le Panier</button>
 </div>
 
