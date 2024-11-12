@@ -2,12 +2,19 @@
 
 @{
     ViewBag.Title = "Produits de la Catégorie";
+
     string backgroundClass = ViewBag.Category switch
+
     {
+
         "category1" => "background-category1",
+
         "category2" => "background-category2",
+
         "category3" => "background-category3",
+
         _ => ""
+
     };
 }
 
@@ -35,6 +42,7 @@
 
 <div class="product-list-grid @backgroundClass" id="product-container">
     @foreach (var product in Model)
+
     {
         <div class="flip-card" data-name="@product.Name" data-price="@product.Price" data-ingredient="@product.Ingredients">
             <div class="flip-card-inner">
@@ -64,24 +72,13 @@
 <!-- Conteneur des détails du panier -->
 <div class="cart-details-container" id="cartDetailsContainer">
     <h3>Détails du Panier</h3>
-    <ul id="cartItemsList">
-        <!-- Exemple d'article de panier -->
-        <li class="cart-item">
-            <span class="cart-item-name">Nom du produit</span>
-            <div class="cart-item-controls">
-                <button class="quantity-btn decrease-quantity">-</button>
-                <input type="number" class="quantity-input" value="1" min="1" />
-                <button class="quantity-btn increase-quantity">+</button>
-                <button class="remove-item-btn" data-name="Nom du produit">
-                    <img src="~/images/corbeillerouge.jpg" alt="Retirer" class="remove-item-img" />
-                </button>
-            </div>
-            <span class="cart-item-price">10 €</span>
-        </li>
-    </ul>
+    <ul id="cartItemsList"></ul>
+    <div id="cartTotalContainer">
+        <span>Total : </span><span id="cartTotal">0.00 €</span>
+    </div>
     <button id="clearCartBtn">Vider le Panier</button>
 </div>
 
 <link rel="stylesheet" href="~/css/styles.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="~/js/products.js"></script>
+<script src="~/js/Products.js"></script>
