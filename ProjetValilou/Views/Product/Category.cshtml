@@ -71,12 +71,14 @@
 
 <!-- Conteneur des détails du panier -->
 <div class="cart-details-container" id="cartDetailsContainer">
+    <button class="close-cart-btn" id="closeCartBtn">&times;</button>
     <h3>Détails du Panier</h3>
     <ul id="cartItemsList"></ul>
     <div id="cartTotalContainer">
         <span>Total : </span><span id="cartTotal">0.00 €</span>
     </div>
-    <button id="clearCartBtn">Vider le Panier</button>
+    <button id="clearCartBtn" class="clear-cart-btn">Vider le Panier</button>
+     <button id="validateOrderBtn" class="cart-action-btn">Valider la commande</button>
 </div>
 
 <link rel="stylesheet" href="~/css/styles.css" />

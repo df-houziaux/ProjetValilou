@@ -3,6 +3,7 @@
     const cartDetailsContainer = document.getElementById('cartDetailsContainer');
     const cartIconLink = document.getElementById('cartIconLink');
     const clearCartBtn = document.getElementById('clearCartBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn'); // Nouveau bouton de fermeture
     let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
 
     if (!Array.isArray(cartProducts)) {
@@ -175,6 +176,13 @@
             updateCartCount();
             updateCartTotal();
             showCartDetails();
+        });
+    }
+
+    // Ajouter l'événement pour fermer le panier
+    if (closeCartBtn) {
+        closeCartBtn.addEventListener('click', () => {
+            cartDetailsContainer.classList.remove('show');
         });
     }
 

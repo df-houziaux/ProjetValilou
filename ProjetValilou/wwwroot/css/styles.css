@@ -87,8 +87,8 @@ body {
 .cart-details-container {
     position: fixed;
     top: 45%; /* Ajuste la position verticale */
-    right: 20%; /* Décale du bord droit */
-    width: 400px; /* Augmente la largeur pour un affichage plus clair */
+    right: 8%; /* Décale du bord droit */
+    width: 450px; /* Augmente la largeur pour un affichage plus clair */
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -298,11 +298,70 @@ body {
 }
 
 .remove-item-img {
-    width: 20px; /* Ajustez la taille selon votre besoin */
-    height: 20px;
+    width: 35px; /* Ajustez la taille selon votre besoin */
+    height: 35px;
     transition: transform 0.3s ease-in-out;
 }
 
     .remove-item-img:hover {
         transform: scale(1.1); /* Effet d'agrandissement au survol */
+    }
+
+.clear-cart-btn {
+    background-color: #d9534f; /* Rouge clair */
+    color: #fff; /* Texte blanc */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+    .clear-cart-btn:hover {
+        background-color: #c9302c;
+        transform: scale(0.98);
+    }
+/* Bouton de fermeture en forme de croix */
+.close-cart-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+    .close-cart-btn:hover {
+        color: #d9534f;
+    }
+/* Bouton de validation de la commande */
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.cart-action-btn {
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    border-radius: 0px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .cart-action-btn:hover {
+        background-color: #4CAF50; 
+        transform: scale(0.98);
+    }
+
+    .cart-action-btn:active {
+        transform: scale(0.98);
     }

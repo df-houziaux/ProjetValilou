@@ -55,18 +55,18 @@ namespace ProjetValilou.Data
             new Product { Name = "savon Vanille 12", ImageUrl = "/images/savonvanille12.jpg", Description = "savon parfumée à la vanille ", Price = 26.99m, Ingredients = "Vanille, Cire de soja" ,Category="Catégorie 2"},
 
             // savons Rosée
-            new Product { Name = "savon Rosée 1", ImageUrl = "/images/savonrosée1.jpg", Description = "savon parfumée à la rosée ", Price = 17.99m, Ingredients = "Rosée, Cire de soja" , Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 2", ImageUrl = "/images/savonrosée2.jpg", Description = "savon parfumée à la rosée ", Price = 18.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 3", ImageUrl = "/images/savonrosée3.jpg", Description = "savon parfumée à la rosée ", Price = 19.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 4", ImageUrl = "/images/savonrosée4.jpg", Description = "savon parfumée à la rosée ", Price = 20.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 5", ImageUrl = "/images/savonrosée5.jpg", Description = "savon parfumée à la rosée ", Price = 21.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 6", ImageUrl = "/images/savonrosée6.jpg", Description = "savon parfumée à la rosée ", Price = 22.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 7", ImageUrl = "/images/savonrosée7.jpg", Description = "savon parfumée à la rosée ", Price = 23.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 8", ImageUrl = "/images/savonrosée8.jpg", Description = "savon parfumée à la rosée ", Price = 24.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 9", ImageUrl = "/images/savonrosée9.jpg", Description = "savon parfumée à la rosée ", Price = 25.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 10", ImageUrl = "/images/savonrosée10.jpg", Description = "savon parfumée à la rosée ", Price = 26.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 11", ImageUrl = "/images/savonrosée11.jpg", Description = "savon parfumée à la rosée ", Price = 27.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
-            new Product { Name = "savon Rosée 12", ImageUrl = "/images/savonrosée12.jpg", Description = "savon parfumée à la rosée ", Price = 28.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"}
+            new Product { Name = "savon Rosé 1", ImageUrl = "/images/savonrosée1.jpg", Description = "savon parfumée à la rose ", Price = 17.99m, Ingredients = "Rosée, Cire de soja" , Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 2", ImageUrl = "/images/savonrosée2.jpg", Description = "savon parfumée à la rose ", Price = 18.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 3", ImageUrl = "/images/savonrosée3.jpg", Description = "savon parfumée à la rose ", Price = 19.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 4", ImageUrl = "/images/savonrosée4.jpg", Description = "savon parfumée à la rose ", Price = 20.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 5", ImageUrl = "/images/savonrosée5.jpg", Description = "savon parfumée à la rose ", Price = 21.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 6", ImageUrl = "/images/savonrosée6.jpg", Description = "savon parfumée à la rose ", Price = 22.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 7", ImageUrl = "/images/savonrosée7.jpg", Description = "savon parfumée à la rose ", Price = 23.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 8", ImageUrl = "/images/savonrosée8.jpg", Description = "savon parfumée à la rose ", Price = 24.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 9", ImageUrl = "/images/savonrosée9.jpg", Description = "savon parfumée à la rose ", Price = 25.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 10", ImageUrl = "/images/savonrosée10.jpg", Description = "savon parfumée à la rose ", Price = 26.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 11", ImageUrl = "/images/savonrosée11.jpg", Description = "savon parfumée à la rose ", Price = 27.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"},
+            new Product { Name = "savon Rosé 12", ImageUrl = "/images/savonrosée12.jpg", Description = "savon parfumée à la rose ", Price = 28.99m, Ingredients = "Rosée, Cire de soja" ,Category="Catégorie 3"}
             };
 
             Console.WriteLine("Seeding data...");

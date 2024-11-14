@@ -44,7 +44,7 @@ namespace ProjetValilou.Controllers
         {
             ViewBag.Category = "category3";
             var products = await _context.Products
-                .Where(p => p.Name.Contains("Rosée"))
+                .Where(p => p.Name.Contains("Rosé"))
                 .ToListAsync();
             return View("Category", products);
         }
