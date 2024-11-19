@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjetValilou.Models;
+using ProjetValilou.Models; // Assurez-vous que vous avez importé votre modèle PaymentInfo
 using System.Collections.Generic;
 
 namespace ProjetValilou.Data
@@ -12,10 +12,12 @@ namespace ProjetValilou.Data
         {
         }
 
-        // DbSet pour le modèle Product
+        // DbSet pour les modèles existants
         public DbSet<Product> Products { get; set; }
-
         public DbSet<Client> Clients { get; set; }
+
+        // DbSet pour le modèle PaymentInfo
+        public DbSet<PaymentInfo> PaymentInfos { get; set; } // Ajoutez ceci
 
         // Configuration de la base de données
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

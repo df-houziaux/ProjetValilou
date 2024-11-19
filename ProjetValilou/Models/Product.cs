@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjetValilou.Models
 {
@@ -8,7 +7,7 @@ namespace ProjetValilou.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Le nom est requis.")]
-        public required string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         public string? ImageUrl { get; set; }
         public string? Description { get; set; }
@@ -17,10 +16,10 @@ namespace ProjetValilou.Models
         public decimal Price { get; set; }
 
         // Propriété pour les ingrédients
-        public string? Ingredients { get; set; } // Vous pouvez aussi utiliser une liste si besoin
+        public string? Ingredients { get; set; }
 
         // Nouvelle propriété pour la catégorie
         [Required(ErrorMessage = "La catégorie est requise.")]
-        public string? Category { get; set; } // Ajouter la catégorie
+        public string Category { get; set; } = string.Empty;
     }
 }
