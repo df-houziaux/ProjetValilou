@@ -7,6 +7,9 @@
     const cartItemsList = document.getElementById('cartItemsList');
     const cartTotalElement = document.getElementById('cartTotal');
     const validateOrderBtn = document.getElementById('validateOrderBtn');
+    const productContainer = document.getElementById('product-container');
+    const searchInput = document.getElementById('searchInput');
+    const searchFilter = document.getElementById('searchFilter');
     let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
 
     // Met à jour le compteur du panier
@@ -46,7 +49,6 @@
 
     // Ajoute un produit au panier
     function addToCart(name, price) {
-      
         const existingProduct = cartProducts.find(p => p.name === name);
         if (existingProduct) {
             existingProduct.quantity++;
@@ -105,6 +107,7 @@
                 }
             } else {
                 alert("La quantité doit être un nombre valide supérieur ou égal à 1.");
+                event.target.value = 1; // Rétablit une valeur valide
             }
         }
     });
@@ -161,6 +164,78 @@
                 alert('Impossible de contacter le serveur.');
             });
     });
+    // Fonction de recherche et filtrage des produits
+    searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.toLowerCase();  // Récupère la valeur de la recherche (minuscule)
+        const filterType = searchFilter.value;  // Filtre de tri actuel (nom, ingrédient, prix)
+        const products = Array.from(productContainer.children);  // Récupère tous les produits dans le conteneur
+
+        // Parcours des produits pour appliquer la recherche et le tri
+        products.forEach(product => {
+            const name = product.getAttribute('data-name').toLowerCase();  // Récupère le nom du produit
+            const ingredient = product.getAttribute('data-ingredient').toLowerCase();  // Récupère les ingrédients du produit
+
+            // Vérifie si le produit correspond à la recherche
+            if (filterType === 'name' && name.includes(searchTerm)) {
+                product.style.display = '';  // Affiche le produit s'il correspond
+            } else if (filterType === 'ingredient' && ingredient.includes(searchTerm)) {
+                product.style.display = '';  // Affiche le produit s'il correspond
+            } else if (filterType === 'price' && name.includes(searchTerm)) {
+                product.style.display = '';  // Affiche le produit s'il correspond
+            } else {
+                product.style.display = 'none';  // Cache le produit s'il ne correspond pas
+            }
+        });
+
+        sortProducts();  // Applique le tri après la recherche
+    });
+
+    // Fonction de tri des produits
+    function sortProducts() {
+        const filterType = searchFilter.value;
+        const products = Array.from(productContainer.children); // Récupère tous les produits dans le conteneur
+
+        // Tri des produits en fonction du critère sélectionné
+        if (filterType === 'price-desc') {
+            products.sort((a, b) => {
+                const priceA = parseFloat(a.getAttribute('data-price'));
+                const priceB = parseFloat(b.getAttribute('data-price'));
+                return priceB - priceA;  // Tri décroissant
+            });
+        } else if (filterType === 'price-asc') {
+            products.sort((a, b) => {
+                const priceA = parseFloat(a.getAttribute('data-price'));
+                const priceB = parseFloat(b.getAttribute('data-price'));
+                return priceA - priceB;  // Tri croissant
+            });
+        } else if (filterType === 'name') {
+            products.sort((a, b) => {
+                const nameA = a.getAttribute('data-name').toLowerCase();
+                const nameB = b.getAttribute('data-name').toLowerCase();
+                return nameA.localeCompare(nameB); // Tri par ordre alphabétique
+            });
+        } else if (filterType === 'ingredient') {
+            products.sort((a, b) => {
+                const ingredientA = a.getAttribute('data-ingredient').toLowerCase();
+                const ingredientB = b.getAttribute('data-ingredient').toLowerCase();
+                return ingredientA.localeCompare(ingredientB); // Tri par ingrédient
+            });
+        }
+
+        // Réafficher les produits triés dans le conteneur
+        productContainer.innerHTML = '';  // Vide le conteneur
+        products.forEach(product => {
+            productContainer.appendChild(product);  // Ajoute les produits triés
+        });
+        console.log("Products sorted:", products); // Vérifie les produits triés
+    }
+
+    // Appliquer le tri à chaque changement de filtre
+    searchFilter.addEventListener('change', () => {
+        sortProducts();
+        console.log("Filter changed:", searchFilter.value); // Vérifie le type de filtre sélectionné
+    });
+
 
     // Initialiser les données du panier
     updateCartCount();
