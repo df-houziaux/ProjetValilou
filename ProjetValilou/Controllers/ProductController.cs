@@ -15,32 +15,25 @@ namespace ProjetValilou.Controllers
             _context = context;
         }
 
-        // Afficher tous les produits
-        public async Task<IActionResult> Index()
-        {
-            var allProducts = await _context.Products.ToListAsync();
-            return View(allProducts);
-        }
-
-        // Afficher les produits par catégories
+        // Afficher les produits par catégories, mais tous les produits sont récupérés
         public async Task<IActionResult> Category1()
         {
             ViewBag.Category = "category1";
-            var products = await _context.Products.Where(p => p.Name.Contains("Lavande")).ToListAsync();
+            var products = await _context.Products.ToListAsync(); 
             return View("Category", products);
         }
 
         public async Task<IActionResult> Category2()
         {
             ViewBag.Category = "category2";
-            var products = await _context.Products.Where(p => p.Name.Contains("Vanille")).ToListAsync();
+            var products = await _context.Products.ToListAsync(); 
             return View("Category", products);
         }
 
         public async Task<IActionResult> Category3()
         {
             ViewBag.Category = "category3";
-            var products = await _context.Products.Where(p => p.Name.Contains("Rosé")).ToListAsync();
+            var products = await _context.Products.ToListAsync(); 
             return View("Category", products);
         }
 
@@ -56,8 +49,8 @@ namespace ProjetValilou.Controllers
         // Afficher la page de paiement
         public IActionResult Payment()
         {
-            var cartItems = GetCartFromSession(); // Récupérer les éléments du panier
-            return View(cartItems); // Passer le panier à la vue Payment.cshtml
+            var cartItems = GetCartFromSession(); 
+            return View(cartItems); 
         }
 
         // Récupérer le panier depuis la session
