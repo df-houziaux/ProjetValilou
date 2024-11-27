@@ -5,6 +5,8 @@
 
 
 
+    // Choix de la classe de fond basée sur la catégorie
+
     string backgroundClass = ViewBag.Category switch
 
     {
@@ -46,7 +48,7 @@
     @foreach (var product in Model)
 
     {
-        <div class="flip-card" data-name="@product.Name" data-price="@product.Price" data-ingredient="@product.Ingredients">
+        <div class="flip-card" data-name="@product.Name" data-price="@product.Price" data-ingredient="@product.Ingredients" data-stock="@product.Stock">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <div class="card">
@@ -55,6 +57,7 @@
                             <h5 class="card-title">@product.Name</h5>
                             <p class="card-text">@product.Description</p>
                             <p class="card-price">@product.Price €</p>
+                            <p class="card-stock">Stock restant: @product.Stock</p>
                         </div>
                     </div>
                 </div>
@@ -65,7 +68,13 @@
                 </div>
             </div>
             <div class="cart-buttons">
-                <button class="add-to-cart-btn" data-product-name="@product.Name" data-product-price="@product.Price">Ajouter au panier</button>
+                <button class="add-to-cart-btn"
+                        data-product-name="@product.Name"
+                        data-product-price="@product.Price"
+                        data-product-stock="@product.Stock"
+                @(product.Stock <= 0 ? "disabled" : "")>
+                    Ajouter au panier
+                </button>
             </div>
         </div>
     }
