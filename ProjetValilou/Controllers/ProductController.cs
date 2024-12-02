@@ -19,21 +19,21 @@ namespace ProjetValilou.Controllers
         public async Task<IActionResult> Category1()
         {
             ViewBag.Category = "category1";
-            var products = await _context.Products.ToListAsync();
+            var products = await _context.Products.Where(p => p.Name.Contains("Lavande")).ToListAsync();
             return View("Category", products);
         }
 
         public async Task<IActionResult> Category2()
         {
             ViewBag.Category = "category2";
-            var products = await _context.Products.ToListAsync();
+            var products = await _context.Products.Where(p => p.Name.Contains("Vanille")).ToListAsync();
             return View("Category", products);
         }
 
         public async Task<IActionResult> Category3()
         {
             ViewBag.Category = "category3";
-            var products = await _context.Products.ToListAsync();
+            var products = await _context.Products.Where(p => p.Name.Contains("Vanille")).ToListAsync();
             return View("Category", products);
         }
 

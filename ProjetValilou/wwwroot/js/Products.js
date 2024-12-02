@@ -8,6 +8,8 @@
     const cartTotalElement = document.getElementById('cartTotal');
     const validateOrderBtn = document.getElementById('validateOrderBtn');
     const productContainer = document.getElementById('product-container');
+    const searchInput = document.getElementById('searchInput');
+    const searchFilter = document.getElementById('searchFilter');
     let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
 
     // Met à jour le compteur du panier
@@ -44,7 +46,7 @@
 
         cartDetailsContainer.classList.toggle('show', cartProducts.length > 0);
         updateCartTotal();
-        updateProductStockDisplay(); // Mettre à jour la vue des produits
+        updateProductStockDisplay();
     }
 
     // Met à jour visuellement le stock des produits
@@ -96,15 +98,6 @@
         alert(`${name} ajouté au panier !`);
     }
 
-    // Supprime un produit du panier
-    function removeFromCart(name) {
-        const index = cartProducts.findIndex(product => product.name === name);
-        if (index !== -1) {
-            cartProducts.splice(index, 1);
-            saveCart();
-        }
-    }
-
     // Sauvegarde le panier dans le localStorage
     function saveCart() {
         localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
@@ -134,153 +127,7 @@
         saveCart();
     });
 
-    // Mise à jour des quantités via les champs de saisie
-    cartItemsList.addEventListener('input', event => {
-        if (event.target.classList.contains('quantity-input')) {
-            const productName = event.target.getAttribute('data-name');
-            const newQuantity = parseInt(event.target.value, 10);
-            const product = cartProducts.find(p => p.name === productName);
-
-            if (!isNaN(newQuantity) && newQuantity >= 1 && product && newQuantity <= product.stock) {
-                product.quantity = newQuantity;
-                saveCart();
-            } else {
-                alert(`La quantité doit être valide et ne pas dépasser le stock disponible.`);
-                event.target.value = product.quantity;
-            }
-        }
-    });
-
-    // Gère l'affichage/fermeture du panier
-    cartIconLink.addEventListener('click', event => {
-        event.preventDefault();
-        showCartDetails();
-    });
-
-    closeCartBtn.addEventListener('click', () => {
-        cartDetailsContainer.classList.remove('show');
-    });
-
-    // Vider le panier
-    clearCartBtn.addEventListener('click', () => {
-        if (confirm("Êtes-vous sûr de vouloir vider le panier ?")) {
-            cartProducts = [];
-            saveCart();
-        }
-    });
-
-    // Ajouter un produit depuis les boutons "Ajouter au panier"
-    document.body.addEventListener('click', event => {
-        if (event.target.classList.contains('add-to-cart-btn')) {
-            const name = event.target.getAttribute('data-product-name');
-            const price = parseFloat(event.target.getAttribute('data-product-price').replace(',', '.'));
-            const stock = parseInt(event.target.getAttribute('data-product-stock'), 10);
-
-            if (name && !isNaN(price) && !isNaN(stock)) {
-                addToCart(name, price, stock);
-            } else {
-                alert("Données de produit invalides.");
-            }
-        }
-    });
-
-    // Valider la commande
-    validateOrderBtn.addEventListener('click', () => {
-        const outOfStock = cartProducts.some(product => product.quantity > product.stock);
-        if (outOfStock) {
-            alert('Votre commande contient des articles en rupture de stock. Veuillez ajuster votre panier.');
-            return;
-        }
-
-        fetch('/api/cart/save', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(cartProducts)
-        })
-            .then(response => {
-                if (response.ok) {
-                    alert('Commande validée ! Stock mis à jour.');
-                    window.location.href = '/Payment/Payment';
-                } else {
-                    alert('Erreur lors de la validation de la commande.');
-                }
-            })
-            .catch(() => {
-                alert('Impossible de contacter le serveur.');
-            });
-    });
-    // Fonction de recherche et filtrage des produits
-    searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.toLowerCase();
-        const filterType = searchFilter.value;
-        const products = Array.from(productContainer.children);
-
-        // Parcours des produits pour appliquer la recherche et le tri
-        products.forEach(product => {
-            const name = product.getAttribute('data-name').toLowerCase();
-            const ingredient = product.getAttribute('data-ingredient').toLowerCase();
-
-            // Vérifie si le produit correspond à la recherche
-            if (filterType === 'name' && name.includes(searchTerm)) {
-                product.style.display = '';
-            } else if (filterType === 'ingredient' && ingredient.includes(searchTerm)) {
-                product.style.display = '';
-            } else if (filterType === 'price' && name.includes(searchTerm)) {
-                product.style.display = '';
-            } else {
-                product.style.display = 'none';
-            }
-        });
-
-        sortProducts();
-    });
-
-    // Fonction de tri des produits
-    function sortProducts() {
-        const filterType = searchFilter.value;
-        const products = Array.from(productContainer.children);
-
-        // Tri des produits en fonction du critère sélectionné
-        if (filterType === 'price-desc') {
-            products.sort((a, b) => {
-                const priceA = parseFloat(a.getAttribute('data-price'));
-                const priceB = parseFloat(b.getAttribute('data-price'));
-                return priceB - priceA;
-            });
-        } else if (filterType === 'price-asc') {
-            products.sort((a, b) => {
-                const priceA = parseFloat(a.getAttribute('data-price'));
-                const priceB = parseFloat(b.getAttribute('data-price'));
-                return priceA - priceB;
-            });
-        } else if (filterType === 'name') {
-            products.sort((a, b) => {
-                const nameA = a.getAttribute('data-name').toLowerCase();
-                const nameB = b.getAttribute('data-name').toLowerCase();
-                return nameA.localeCompare(nameB);
-            });
-        } else if (filterType === 'ingredient') {
-            products.sort((a, b) => {
-                const ingredientA = a.getAttribute('data-ingredient').toLowerCase();
-                const ingredientB = b.getAttribute('data-ingredient').toLowerCase();
-                return ingredientA.localeCompare(ingredientB);
-            });
-        }
-
-        // Réafficher les produits triés dans le conteneur
-        productContainer.innerHTML = '';
-        products.forEach(product => {
-            productContainer.appendChild(product);
-        });
-        console.log("Products sorted:", products);
-    }
-
-    // Appliquer le tri à chaque changement de filtre
-    searchFilter.addEventListener('change', () => {
-        sortProducts();
-        console.log("Filter changed:", searchFilter.value);
-    });
-    // Initialiser les données du panier
+    // Initialisation
     updateCartCount();
     showCartDetails();
 });
