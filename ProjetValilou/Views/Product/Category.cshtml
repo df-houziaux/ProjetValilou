@@ -32,6 +32,7 @@
         <select id="searchFilter" class="search-filter">
             <option value="name">Nom</option>
             <option value="ingredient">Ingrédient</option>
+          
             <option value="price-asc">Prix - Moins Cher au Plus Cher</option>
             <option value="price-desc">Prix - Plus Cher au Moins Cher</option>
         </select>
@@ -52,12 +53,24 @@
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <div class="card">
-                        <img src="@product.ImageUrl" alt="@product.Name" class="card-img-top">
+                        <img src="@product.ImageUrl" alt="@product.Name" class="card-img-top" />
                         <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
                             <p class="card-text">@product.Description</p>
                             <p class="card-price">@product.Price €</p>
-                            <p class="card-stock">Stock restant: @product.Stock</p>
+                            <p class="card-stock">
+                                @if (product.Stock <= 0)
+
+                                {
+                                    <span style="color: red;">Épuisé</span>
+                                }
+
+                                else
+
+                                {
+                                    @($"Stock restant: {product.Stock}")
+                                }
+                            </p>
                         </div>
                     </div>
                 </div>

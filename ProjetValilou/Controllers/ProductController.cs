@@ -33,30 +33,24 @@ namespace ProjetValilou.Controllers
         public async Task<IActionResult> Category3()
         {
             ViewBag.Category = "category3";
-            var products = await _context.Products.Where(p => p.Name.Contains("Vanille")).ToListAsync();
+            var products = await _context.Products.Where(p => p.Name.Contains("Rosé")).ToListAsync();
             return View("Category", products);
         }
 
-        // Vérifie la disponibilité d'un produit avant de l'ajouter au panier
-        [HttpPost]
-        public IActionResult CheckProductAvailability(int productId, int quantity)
+        // Nouvelle méthode pour rechercher des produits
+        [HttpGet("/api/products/search")]
+        public async Task<IActionResult> Search(string query)
         {
-            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
-            if (product == null)
+            if (string.IsNullOrWhiteSpace(query))
             {
-                return NotFound("Produit non trouvé.");
+                return BadRequest("La requête de recherche ne peut pas être vide.");
             }
 
-            if (product.Stock < quantity)
-            {
-                return BadRequest("Rupture de stock pour cet article.");
-            }
+            var products = await _context.Products
+                .Where(p => p.Name.Contains(query) || p.Ingredients.Contains(query))
+                .ToListAsync();
 
-            // Réduire le stock du produit
-            product.Stock -= quantity;
-            _context.SaveChanges();  // Enregistrez les changements dans la base de données
-
-            return Ok("Produit ajouté au panier.");
+            return Ok(products);
         }
 
         // API pour sauvegarder le panier dans la session
@@ -66,6 +60,14 @@ namespace ProjetValilou.Controllers
             var cartJson = JsonConvert.SerializeObject(cartDetails);
             HttpContext.Session.SetString("CartDetails", cartJson);
             return Ok();
+        }
+
+        // API pour récupérer les niveaux de stock
+        [HttpGet("/api/products/stock")]
+        public IActionResult GetStockLevels()
+        {
+            var stockLevels = _context.Products.Select(p => new { p.Name, p.Stock }).ToList();
+            return Ok(stockLevels);
         }
 
         // Afficher la page de paiement
@@ -82,5 +84,4 @@ namespace ProjetValilou.Controllers
             return string.IsNullOrEmpty(cartJson) ? new List<CartItem>() : JsonConvert.DeserializeObject<List<CartItem>>(cartJson);
         }
     }
-
 }

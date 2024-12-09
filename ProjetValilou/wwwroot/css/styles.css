@@ -87,8 +87,8 @@ body {
 .cart-details-container {
     position: fixed;
     top: 45%; /* Ajuste la position verticale */
-    right: 8%; /* Décale du bord droit */
-    width: 450px; /* Augmente la largeur pour un affichage plus clair */
+    right: 4%; /* Décale du bord droit */
+    width: 600px; /* Augmente la largeur pour un affichage plus clair */
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
