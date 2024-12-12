@@ -32,7 +32,6 @@
         <select id="searchFilter" class="search-filter">
             <option value="name">Nom</option>
             <option value="ingredient">Ingrédient</option>
-          
             <option value="price-asc">Prix - Moins Cher au Plus Cher</option>
             <option value="price-desc">Prix - Plus Cher au Moins Cher</option>
         </select>
@@ -49,7 +48,11 @@
     @foreach (var product in Model)
 
     {
-        <div class="flip-card" data-name="@product.Name" data-price="@product.Price" data-ingredient="@product.Ingredients" data-stock="@product.Stock">
+        <div class="flip-card"
+             data-name="@product.Name"
+             data-price="@product.Price"
+             data-ingredient="@product.Ingredients"
+             data-stock="@product.Stock">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <div class="card">
@@ -92,6 +95,7 @@
         </div>
     }
 </div>
+
 
 <!-- Conteneur des détails du panier -->
 <div class="cart-details-container" id="cartDetailsContainer">

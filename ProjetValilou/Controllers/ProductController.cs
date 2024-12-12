@@ -15,25 +15,25 @@ namespace ProjetValilou.Controllers
             _context = context;
         }
 
-        // Afficher les produits par catégories
+        // Afficher les produits par catégories, mais tous les produits sont récupérés
         public async Task<IActionResult> Category1()
         {
             ViewBag.Category = "category1";
-            var products = await _context.Products.Where(p => p.Name.Contains("Lavande")).ToListAsync();
+            var products = await _context.Products.ToListAsync();
             return View("Category", products);
         }
 
         public async Task<IActionResult> Category2()
         {
-            ViewBag.Category = "category2";
-            var products = await _context.Products.Where(p => p.Name.Contains("Vanille")).ToListAsync();
+             ViewBag.Category = "category2";
+            var products = await _context.Products.ToListAsync(); 
             return View("Category", products);
         }
 
         public async Task<IActionResult> Category3()
         {
             ViewBag.Category = "category3";
-            var products = await _context.Products.Where(p => p.Name.Contains("Rosé")).ToListAsync();
+            var products = await _context.Products.ToListAsync();
             return View("Category", products);
         }
 
