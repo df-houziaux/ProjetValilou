@@ -15,32 +15,25 @@ namespace ProjetValilou.Controllers
             _context = context;
         }
 
-        // Afficher tous les produits
-        public async Task<IActionResult> Index()
-        {
-            var allProducts = await _context.Products.ToListAsync();
-            return View(allProducts);
-        }
-
-        // Afficher les produits par catégories
+        // Afficher les produits par catégories, mais tous les produits sont récupérés
         public async Task<IActionResult> Category1()
         {
             ViewBag.Category = "category1";
-            var products = await _context.Products.Where(p => p.Name.Contains("Lavande")).ToListAsync();
+            var products = await _context.Products.ToListAsync();
             return View("Category", products);
         }
 
         public async Task<IActionResult> Category2()
         {
-            ViewBag.Category = "category2";
-            var products = await _context.Products.Where(p => p.Name.Contains("Vanille")).ToListAsync();
+             ViewBag.Category = "category2";
+            var products = await _context.Products.ToListAsync(); 
             return View("Category", products);
         }
 
         public async Task<IActionResult> Category3()
         {
             ViewBag.Category = "category3";
-            var products = await _context.Products.Where(p => p.Name.Contains("Rosé")).ToListAsync();
+            var products = await _context.Products.ToListAsync();
             return View("Category", products);
         }
 
@@ -48,22 +41,17 @@ namespace ProjetValilou.Controllers
         [HttpGet("/api/products/search")]
         public async Task<IActionResult> Search(string query)
         {
-            // Vérifier que la requête n'est pas vide
             if (string.IsNullOrWhiteSpace(query))
             {
                 return BadRequest("La requête de recherche ne peut pas être vide.");
             }
 
-            // Récupérer tous les produits qui correspondent à la recherche
             var products = await _context.Products
-                .Where(p => p.Name.Contains(query)).ToListAsync();
-
-            Console.WriteLine(products);
+                .Where(p => p.Name.Contains(query) || p.Ingredients.Contains(query))
+                .ToListAsync();
 
             return Ok(products);
         }
-
-
 
         // API pour sauvegarder le panier dans la session
         [HttpPost("/api/cart/save")]

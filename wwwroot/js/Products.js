@@ -10,15 +10,7 @@ const validateOrderBtn = document.getElementById('validateOrderBtn');
 const productContainer = document.getElementById('product-container');
 const searchInput = document.getElementById('searchInput');
 const searchFilter = document.getElementById('searchFilter');
-
-const articlesInitial = productContainer.innerHTML
-const couleurInitial = productContainer.style.backgroundColor
-
-const categories = {
-    "Lavande": "#E3E6F5",
-    "Rosée": "#F6D5D5",
-    "Vanille": "#F7E8C5",
-}
+const showPriceBtn = document.getElementById('showPriceBtn');
 
 // Récupération des produits du panier depuis localStorage
 let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
@@ -31,34 +23,30 @@ function updateCartCount() {
 
 // Affiche les détails du panier
 function showCartDetails() {
-    cartItemsList.innerHTML = '';
+    cartItemsList.innerHTML = ''; 
     cartProducts.forEach(product => {
         const listItem = document.createElement('li');
         const stockMessage = product.quantity < product.stock ? '' : ' (Stock épuisé)';
 
-        // Formatage du texte avec lien pour rediriger vers la page de la catégorie
-        const productLink = document.createElement('a');
-        productLink.href = `/${product.category}`; // Modifiez ceci selon la structure de vos URL
-        productLink.textContent = `${product.name} ${product.quantity} x ${product.price.toFixed(2)} € ${stockMessage}`;
-        productLink.target = "_blank"; // Ouvre le lien dans un nouvel onglet
-        listItem.appendChild(productLink);
+        // Formatage du texte
+        listItem.textContent = `${product.name} ${product.quantity} x ${product.price.toFixed(2)} € ${stockMessage}`;
 
         // Créer un conteneur pour les boutons + et - et le champ de saisie
         const quantityContainer = document.createElement('div');
         quantityContainer.style.display = 'inline-flex';
         quantityContainer.style.alignItems = 'center';
-        quantityContainer.style.marginLeft = '15px';
+        quantityContainer.style.marginLeft = '15px'; 
 
         // Bouton pour diminuer la quantité
         const decreaseBtn = document.createElement('button');
         decreaseBtn.textContent = '-';
-        decreaseBtn.style.marginRight = '15px';
+        decreaseBtn.style.marginRight = '15px'; 
 
         decreaseBtn.onclick = () => {
             if (product.quantity > 1) {
                 product.quantity--;
                 saveCart();
-                showCartDetails();
+                showCartDetails(); 
             }
         };
 
@@ -68,8 +56,8 @@ function showCartDetails() {
         quantityInput.value = product.quantity;
         quantityInput.min = 1;
         quantityInput.max = 999;
-        quantityInput.style.width = '50px';
-        quantityInput.style.marginRight = '15px';
+        quantityInput.style.width = '50px'; 
+        quantityInput.style.marginRight = '15px'; 
 
         // Événement pour mettre à jour la quantité
         quantityInput.onchange = () => {
@@ -81,7 +69,7 @@ function showCartDetails() {
             }
             product.quantity = newQuantity;
             saveCart();
-            showCartDetails();
+            showCartDetails(); 
         };
 
         // Bouton pour augmenter la quantité
@@ -111,8 +99,8 @@ function showCartDetails() {
 
     // Afficher ou masquer le conteneur du panier selon le contenu
     cartDetailsContainer.classList.toggle('show', cartProducts.length > 0);
-    updateCartTotal();
-    updateProductStockDisplay();
+    updateCartTotal(); 
+    updateProductStockDisplay(); 
 }
 
 // Met à jour visuellement le stock des produits
@@ -120,6 +108,7 @@ function updateProductStockDisplay() {
     const products = Array.from(productContainer.children);
 
     products.forEach(product => {
+        // Vérifiez si l'élément est défini
         if (product) {
             const name = product.getAttribute('data-name');
             const stock = parseInt(product.getAttribute('data-stock'), 10);
@@ -150,7 +139,7 @@ function updateCartTotal() {
 }
 
 // Ajoute un produit au panier
-function addToCart(name, price, stock, category) {
+function addToCart(name, price, stock) {
     const product = cartProducts.find(p => p.name === name);
     if (product) {
         if (product.quantity < stock) {
@@ -159,11 +148,11 @@ function addToCart(name, price, stock, category) {
             alert('Stock épuisé pour ce produit.');
         }
     } else {
-        cartProducts.push({ name, price, quantity: 1, stock, category });
+        cartProducts.push({ name, price, quantity: 1, stock });
     }
     saveCart();
-    showCartDetails();
-    updateCartTotal();
+    showCartDetails(); 
+    updateCartTotal(); 
     alert(`${name} ajouté au panier !`);
 }
 
@@ -173,7 +162,7 @@ function removeFromCart(name) {
     if (index !== -1) {
         cartProducts.splice(index, 1);
         saveCart();
-        showCartDetails();
+        showCartDetails(); 
     }
 }
 
@@ -197,7 +186,7 @@ clearCartBtn.addEventListener('click', () => {
     if (confirm("Êtes-vous sûr de vouloir vider le panier ?")) {
         cartProducts = [];
         saveCart();
-        showCartDetails();
+        showCartDetails(); 
     }
 });
 
@@ -207,9 +196,8 @@ document.body.addEventListener('click', event => {
         const name = event.target.getAttribute('data-product-name');
         const price = parseFloat(event.target.getAttribute('data-product-price').replace(',', '.'));
         const stock = parseInt(event.target.getAttribute('data-product-stock'), 10);
-        const category = event.target.getAttribute('data-product-category'); // Ajout de la catégorie
         if (name && !isNaN(price) && !isNaN(stock)) {
-            addToCart(name, price, stock, category); // Passer la catégorie ici
+            addToCart(name, price, stock);
         } else {
             alert("Données de produit invalides.");
         }
@@ -231,7 +219,7 @@ validateOrderBtn.addEventListener('click', () => {
         .then(response => {
             if (response.ok) {
                 alert('Commande validée ! Stock mis à jour.');
-                window.location.href = '/Payment/Payment';
+                window.location.href = '/Payment/Payment'; 
             } else {
                 alert('Erreur lors de la validation de la commande.');
             }
@@ -241,92 +229,82 @@ validateOrderBtn.addEventListener('click', () => {
         });
 });
 
-// Recherche d'un produit dans la base
-searchInput.addEventListener("input",(event) => {
-    const query = event.target.value;
+// Fonction de recherche et filtrage des produits
+searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.toLowerCase();  // Récupère la valeur de la recherche (minuscule)
+    const filterType = searchFilter.value;  // Filtre de tri actuel (nom, ingrédient, prix)
+    const products = Array.from(productContainer.children);  // Récupère tous les produits dans le conteneur
 
-    // Vérifier que la requête n'est pas vide
-    if (query.trim() === "") {
-        // logique pour réafficher les articles de base de la catégorie
-        productContainer.innerHTML = articlesInitial
-        productContainer.style.backgroundColor = couleurInitial
-        return;
+    // Parcours des produits pour appliquer la recherche et le tri
+    products.forEach(product => {
+        const name = product.getAttribute('data-name').toLowerCase();  // Récupère le nom du produit
+        const ingredient = product.getAttribute('data-ingredient').toLowerCase();  // Récupère les ingrédients du produit
+
+        // Vérifie si le produit correspond à la recherche
+        if (filterType === 'name' && name.includes(searchTerm)) {
+            product.style.display = '';  // Affiche le produit s'il correspond
+        } else if (filterType === 'ingredient' && ingredient.includes(searchTerm)) {
+            product.style.display = '';  // Affiche le produit s'il correspond
+        } else if (filterType === 'price' && name.includes(searchTerm)) {
+            product.style.display = '';  // Affiche le produit s'il correspond
+        } else {
+            product.style.display = 'none';  // Cache le produit s'il ne correspond pas
+        }
+    });
+
+    sortProducts();  // Applique le tri après la recherche
+});
+
+// Fonction de tri des produits
+function sortProducts() {
+    const filterType = searchFilter.value;
+    const products = Array.from(productContainer.children); 
+
+    // Tri des produits en fonction du critère sélectionné
+    if (filterType === 'price-desc') {
+        products.sort((a, b) => {
+            const priceA = parseFloat(a.getAttribute('data-price'));
+            const priceB = parseFloat(b.getAttribute('data-price'));
+            return priceB - priceA;  // Tri décroissant
+        });
+    } else if (filterType === 'price-asc') {
+        products.sort((a, b) => {
+            const priceA = parseFloat(a.getAttribute('data-price'));
+            const priceB = parseFloat(b.getAttribute('data-price'));
+            return priceA - priceB;  // Tri croissant
+        });
+    } else if (filterType === 'name') {
+        products.sort((a, b) => {
+            const nameA = a.getAttribute('data-name').toLowerCase();
+            const nameB = b.getAttribute('data-name').toLowerCase();
+            return nameA.localeCompare(nameB); // Tri par ordre alphabétique
+        });
+    } else if (filterType === 'ingredient') {
+        products.sort((a, b) => {
+            const ingredientA = a.getAttribute('data-ingredient').toLowerCase();
+            const ingredientB = b.getAttribute('data-ingredient').toLowerCase();
+            return ingredientA.localeCompare(ingredientB); // Tri par ingrédient
+        });
     }
 
-    
+    // Réafficher les produits triés dans le conteneur
+    productContainer.innerHTML = '';  
+    products.forEach(product => {
+        productContainer.appendChild(product);  
+    });
+    console.log("Products sorted:", products); 
+}
 
-   const matchingCategory = Object.keys(categories).find(category => {
-    console.log("Category ", category.toLowerCase());
-    console.log("Query ", query.toLowerCase());
-    return category.toLowerCase().includes(query.toLowerCase());
+// Appliquer le tri à chaque changement de filtre
+searchFilter.addEventListener('change', () => {
+    sortProducts();
+    console.log("Filter changed:", searchFilter.value); 
 });
 
 
-    // Si une correspondance est trouvée, changer le background, sinon remettre à la valeur par défaut
-    if (matchingCategory) {
-        productContainer.style.backgroundColor = categories[matchingCategory];
-    } else {
-        productContainer.style.backgroundColor = ""; // Réinitialiser si aucune correspondance
-    }
-
-    // Requête AJAX à l'API
-    fetch(`/api/products/search?query=${encodeURIComponent(query)}`)
-        .then(response => response.json())
-        .then(products => {
-            // Afficher les résultats
-
-            console.log(products)
 
 
 
-            productContainer.innerHTML = "";
-
-            if (products.length === 0) {
-                productContainer.innerHTML = "Aucun produit trouvé.";
-                return;
-            }
-
-            products.forEach(product => {
-                const productElement = document.createElement("div");
-                productElement.className = "flip-card"
-                productElement.innerHTML = `
-                 
-                <div class="flip-card" data-name="Savon Lavande 1" data-price="15,99" data-ingredient="Lavande, Cire de soja" data-stock="10">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="card">
-                                <img src="${product.imageUrl}" alt="${product.name}" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${product.name}</h5>
-                                        <p class="card-text">${product.description}</p>
-                                        <p class="card-price">${product.price}</p>
-                                        <p class="card-stock"><span style="color: red;">Rupture de stock</span></p>
-                                    </div>
-                                </img>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <h2>Savon Lavande 1</h2>
-                            <p>Ingrédients :</p>
-                            <p>Lavande, Cire de soja</p>
-                        </div>
-                    </div>
-                    <div class="cart-buttons">
-                        <button class="add-to-cart-btn" data-product-name="${product.name}" data-product-price="${product.price}" data-product-stock="10">
-                            Ajouter au panier
-                        </button>
-                    </div>
-                </div>
-                `
-                productContainer.appendChild(productElement);
-            });
-        })
-        .catch(error => {
-            console.error("Erreur lors de la recherche :", error);
-        });
-})
-
-
-// Initialiser l'affichage du panier au chargement de la page
+// Initialisation
 updateCartCount();
-showCartDetails();
+showCartDetails(); 
