@@ -242,7 +242,7 @@ validateOrderBtn.addEventListener('click', () => {
 });
 
 // Recherche d'un produit dans la base
-searchInput.addEventListener("input",(event) => {
+searchInput.addEventListener("input", (event) => {
     const query = event.target.value;
 
     // Vérifier que la requête n'est pas vide
@@ -253,13 +253,13 @@ searchInput.addEventListener("input",(event) => {
         return;
     }
 
-    
 
-   const matchingCategory = Object.keys(categories).find(category => {
-    console.log("Category ", category.toLowerCase());
-    console.log("Query ", query.toLowerCase());
-    return category.toLowerCase().includes(query.toLowerCase());
-});
+
+    const matchingCategory = Object.keys(categories).find(category => {
+        console.log("Category ", category.toLowerCase());
+        console.log("Query ", query.toLowerCase());
+        return category.toLowerCase().includes(query.toLowerCase());
+    });
 
 
     // Si une correspondance est trouvée, changer le background, sinon remettre à la valeur par défaut
@@ -296,12 +296,15 @@ searchInput.addEventListener("input",(event) => {
                         <div class="flip-card-front">
                             <div class="card">
                                 <img src="${product.imageUrl}" alt="${product.name}" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${product.name}</h5>
-                                        <p class="card-text">${product.description}</p>
-                                        <p class="card-price">${product.price}</p>
-                                        <p class="card-stock"><span style="color: red;">Rupture de stock</span></p>
-                                    </div>
+                                   <div class="card-body">
+    <h5 class="card-title">${product.name}</h5>
+    <p class="card-text">${product.description}</p>
+    <p class="card-price">${product.price} €</p>
+    <p class="card-stock ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}">
+        ${product.stock > 0 ? `${product.stock} en stock` : 'Épuisé'}
+    </p>
+</div>
+
                                 </img>
                             </div>
                         </div>
@@ -312,7 +315,7 @@ searchInput.addEventListener("input",(event) => {
                         </div>
                     </div>
                     <div class="cart-buttons">
-                        <button class="add-to-cart-btn" data-product-name="${product.name}" data-product-price="${product.price}" data-product-stock="10">
+                        <button class="add-to-cart-btn" data-product-name="${product.name}" data-product-price="${product.price}" data-product-stock="${product.stock}">
                             Ajouter au panier
                         </button>
                     </div>
@@ -326,6 +329,50 @@ searchInput.addEventListener("input",(event) => {
         });
 })
 
+
+// Fonction de tri des produits
+function sortProducts() {
+    const filterType = searchFilter.value; // Récupérer le type de filtre sélectionné
+    const products = Array.from(productContainer.children); // Récupérer tous les produits
+
+    // Tri des produits en fonction du critère sélectionné
+    if (filterType === 'price-desc') {
+        products.sort((a, b) => {
+            const priceA = parseFloat(a.getAttribute('data-price').replace(',', '.'));
+            const priceB = parseFloat(b.getAttribute('data-price').replace(',', '.'));
+            return priceB - priceA;  // Tri décroissant
+        });
+    } else if (filterType === 'price-asc') {
+        products.sort((a, b) => {
+            const priceA = parseFloat(a.getAttribute('data-price').replace(',', '.'));
+            const priceB = parseFloat(b.getAttribute('data-price').replace(',', '.'));
+            return priceA - priceB;  // Tri croissant
+        });
+    } else if (filterType === 'name') {
+        products.sort((a, b) => {
+            const nameA = a.getAttribute('data-name').toLowerCase();
+            const nameB = b.getAttribute('data-name').toLowerCase();
+            return nameA.localeCompare(nameB); // Tri par ordre alphabétique
+        });
+    } else if (filterType === 'ingredient') {
+        products.sort((a, b) => {
+            const ingredientA = a.getAttribute('data-ingredient').toLowerCase();
+            const ingredientB = b.getAttribute('data-ingredient').toLowerCase();
+            return ingredientA.localeCompare(ingredientB); // Tri par ingrédient
+        });
+    }
+
+    // Réafficher les produits triés dans le conteneur
+    productContainer.innerHTML = '';
+    products.forEach(product => {
+        productContainer.appendChild(product);
+    });
+}
+
+// Appliquer le tri à chaque changement de filtre
+searchFilter.addEventListener('change', () => {
+    sortProducts();
+});
 
 // Initialiser l'affichage du panier au chargement de la page
 updateCartCount();

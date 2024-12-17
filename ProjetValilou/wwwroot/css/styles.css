@@ -365,3 +365,12 @@ body {
     .cart-action-btn:active {
         transform: scale(0.98);
     }
+.card-stock.out-of-stock {
+    color: red;
+    font-weight: bold;
+}
+
+
+.card-stock.in-stock {
+    color: green;
+}
