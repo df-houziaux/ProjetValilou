@@ -297,13 +297,13 @@ searchInput.addEventListener("input", (event) => {
                             <div class="card">
                                 <img src="${product.imageUrl}" alt="${product.name}" class="card-img-top">
                                    <div class="card-body">
-    <h5 class="card-title">${product.name}</h5>
-    <p class="card-text">${product.description}</p>
-    <p class="card-price">${product.price} €</p>
-    <p class="card-stock ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}">
-        ${product.stock > 0 ? `${product.stock} en stock` : 'Épuisé'}
-    </p>
-</div>
+                                    <h5 class="card-title">${product.name}</h5>
+                                    <p class="card-text">${product.description}</p>
+                                    <p class="card-price">${product.price} €</p>
+                                    <p class="card-stock ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}">
+                                       ${product.stock > 0 ? `${product.stock} en stock` : 'Épuisé'}
+                                   </p>
+                                  </div>
 
                                 </img>
                             </div>

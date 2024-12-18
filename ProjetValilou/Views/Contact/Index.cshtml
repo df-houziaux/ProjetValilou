@@ -1,0 +1,55 @@
+﻿@model ProjetValilou.Models.ContactViewModel
+
+@{
+    ViewData["Title"] = "Contactez-nous";
+}
+
+<h2>Contactez-nous</h2>
+<div class="contact-form">
+    <form asp-action="Index" method="post">
+        <div class="mb-3">
+            <label asp-for="Nom" class="form-label"></label>
+            <input asp-for="Nom" class="form-control" required>
+            <span asp-validation-for="Nom" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" required>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Telephone" class="form-label"></label>
+            <input asp-for="Telephone" class="form-control">
+            <span asp-validation-for="Telephone" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Objet" class="form-label"></label>
+            <select asp-for="Objet" class="form-select" required>
+                <option value="" disabled selected>Sélectionnez un objet</option>
+                <option value="demande_information">Demande d'information</option>
+                <option value="commande">Commande</option>
+                <option value="reclamation">Réclamation</option>
+                <option value="retour_produit">Retour produit</option>
+                <option value="autre">Autre</option>
+            </select>
+            <span asp-validation-for="Objet" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Message" class="form-label"></label>
+            <textarea asp-for="Message" class="form-control" rows="4" required></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input asp-for="Consentement" class="form-check-input" required>
+            <label class="form-check-label">J'accepte que mes données personnelles soient utilisées pour répondre à ma demande.</label>
+            <span asp-validation-for="Consentement" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    </form>
+</div>
