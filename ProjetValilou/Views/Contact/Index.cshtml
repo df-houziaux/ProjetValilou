@@ -8,21 +8,21 @@
 <div class="contact-form">
     <form asp-action="Index" method="post">
         <div class="mb-3">
-            <label asp-for="Nom" class="form-label"></label>
-            <input asp-for="Nom" class="form-control" required>
-            <span asp-validation-for="Nom" class="text-danger"></span>
+            <label for="nom">Nom:</label>
+            <input type="text" class="form-control" id="nom" name="nom" required placeholder="Ex: Dupont Nicola">
+            <span id="nomError" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
             <label asp-for="Email" class="form-label"></label>
-            <input asp-for="Email" class="form-control" required>
-            <span asp-validation-for="Email" class="text-danger"></span>
+            <input asp-for="Email" id="email" class="form-control" required placeholder="Ex: exemple@gmail.com">
+            <span id="emailError" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
             <label asp-for="Telephone" class="form-label"></label>
-            <input asp-for="Telephone" class="form-control">
-            <span asp-validation-for="Telephone" class="text-danger"></span>
+            <input asp-for="Telephone" id="telephone" class="form-control" required placeholder="Ex: 03-12-12-09">
+            <span id="telephoneError" class="text-danger"></span> 
         </div>
 
         <div class="mb-3">
@@ -40,16 +40,18 @@
 
         <div class="mb-3">
             <label asp-for="Message" class="form-label"></label>
-            <textarea asp-for="Message" class="form-control" rows="4" required></textarea>
-            <span asp-validation-for="Message" class="text-danger"></span>
+            <textarea asp-for="Message" id="message" class="form-control" rows="4" required placeholder="Écrivez votre message ici..."></textarea>
+            <span id="messageError" class="text-danger"></span>
         </div>
 
         <div class="mb-3 form-check">
             <input asp-for="Consentement" class="form-check-input" required>
-            <label class="form-check-label">J'accepte que mes données personnelles soient utilisées pour répondre à ma demande.</label>
+            <label class="form-check-label" for="Consentement">J'accepte que mes données personnelles soient utilisées pour répondre à ma demande.</label>
             <span asp-validation-for="Consentement" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
 </div>
+
+<script src="~/js/form-validation.js"></script>

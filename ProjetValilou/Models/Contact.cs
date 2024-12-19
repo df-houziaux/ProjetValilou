@@ -5,7 +5,7 @@ namespace ProjetValilou.Models
     public class ContactViewModel
     {
         [Required(ErrorMessage = "Le nom est requis.")]
-        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Le nom ne peut contenir que des lettres et des espaces.")]
+        [RegularExpression(@"^[A-Z][a-zA-Z\s]*$", ErrorMessage = "Le nom doit commencer par une majuscule et ne peut contenir que des lettres et des espaces.")]
         public string Nom { get; set; }
 
         [Required(ErrorMessage = "L'adresse e-mail est requise.")]
@@ -26,3 +26,4 @@ namespace ProjetValilou.Models
         public bool Consentement { get; set; }
     }
 }
+
