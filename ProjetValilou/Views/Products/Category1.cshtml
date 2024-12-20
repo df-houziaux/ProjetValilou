@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ProjetValilou.Models.Product>
+
+@{
+    ViewData["Title"] = "Produits de la Catégorie 1"; // Titre de la page
+}
+
+< h1 > @ViewData["Title"] </ h1 >
+
+< table class= "table" >
+    < thead >
+        < tr >
+            < th > Nom </ th >
+            < th > Description </ th >
+            < th > Prix </ th >
+            < th > Image </ th >
+        </ tr >
+    </ thead >
+    < tbody >
+        @foreach(var product in Model)
+        {
+            < tr >
+                < td > @product.Name </ td >
+                < td > @product.Description </ td >
+                < td > @product.Price €</ td >
+                < td >< img src = "@product.ImageUrl" alt = "@product.Name" style = "width:100px;height:100px;" /></ td >
+            </ tr >
+        }
+    </ tbody >
+</ table >

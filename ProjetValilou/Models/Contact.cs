@@ -4,26 +4,25 @@ namespace ProjetValilou.Models
 {
     public class ContactViewModel
     {
-        [Required(ErrorMessage = "Le nom est requis.")]
-        [RegularExpression(@"^[A-Z][a-zA-Z\s]*$", ErrorMessage = "Le nom doit commencer par une majuscule et ne peut contenir que des lettres et des espaces.")]
-        public string Nom { get; set; }
+        [Required(ErrorMessage = "Veuillez entrer votre nom.")]
+        public string Name { get; set; }
 
-        [Required(ErrorMessage = "L'adresse e-mail est requise.")]
-        [EmailAddress(ErrorMessage = "Adresse e-mail invalide.")]
+        [Required(ErrorMessage = "Veuillez entrer votre adresse email.")]
+        [EmailAddress(ErrorMessage = "Veuillez entrer une adresse email valide.")]
         public string Email { get; set; }
 
-        [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Le numéro de téléphone doit être valide.")]
-        public string Telephone { get; set; }
+        [Required(ErrorMessage = "Veuillez entrer votre numéro de téléphone.")]
+        [RegularExpression(@"^(0[1-9][ .]?[0-9]{2}[ .]?[0-9]{2}[ .]?[0-9]{2}[ .]?[0-9]{2})$",
+                           ErrorMessage = "Veuillez entrer un numéro de téléphone valide (ex: 03-12-12-09 ou 03 12 12 09).")]
+        public string Telephone { get; set; } // Utiliser PascalCase
 
-        [Required(ErrorMessage = "L'objet est requis.")]
+        [Required(ErrorMessage = "Veuillez sélectionner un objet.")]
         public string Objet { get; set; }
 
-        [Required(ErrorMessage = "Le message est requis.")]
-        [StringLength(500, ErrorMessage = "Le message ne peut pas dépasser 500 caractères.")]
+        [Required(ErrorMessage = "Veuillez entrer votre message.")]
         public string Message { get; set; }
 
-        [Required(ErrorMessage = "Vous devez accepter les conditions.")]
+        [Required(ErrorMessage = "Veuillez donner votre consentement.")]
         public bool Consentement { get; set; }
     }
 }
-
