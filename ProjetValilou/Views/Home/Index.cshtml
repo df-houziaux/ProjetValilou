@@ -1,37 +1,85 @@
 ﻿@model List<ProjetValilou.Models.Product>
 
-<div class="text-center">
-    <h1 class="display-4">Bienvenue sur Les Savons de Lily</h1>
-    <p class="lead">Découvrez nos dernières créations artisanales.</p>
+<div class="container text-center my-5">
+    <h1 class="display-4">Bienvenue chez Les Savons de Lily</h1>
+    <p class="lead">Votre destination incontournable pour des savons artisanaux faits maison.</p>
 </div>
 
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
+<div class="carousel-container">
+    <div class="slides">
         @for (int i = 0; i < Model.Count; i++)
+
         {
+
             var product = Model[i];
-            <div class="carousel-item @(i == 0 ? "active" : "")">
-                <img src="@Url.Content("~/images/" + product.ImageUrl)" class="d-block carousel-img mx-auto" alt="@product.Name">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>@product.Name</h5>
+            <img src="@Url.Content("~/images/" + product.ImageUrl)" class="d-block" alt="@product.Name">
+        }
+    </div>
+</div>
+
+<script src="~/js/carousel.js"></script>
+<link rel="stylesheet" href="~/css/carousel.css">
+
+<div class="container my-5">
+    <h2>Ma Mission</h2>
+    <p>Ma mission est de vous offrir des savons qui nourrissent votre peau tout en préservant notre planète. Je m'engage à n'utiliser que des ingrédients naturels, soigneusement sélectionnés pour leurs propriétés bénéfiques. Avec chaque utilisation, je souhaite que vous ressentiez la différence dans votre peau et dans votre bien-être.</p>
+</div>
+
+<div class="container my-5">
+    <h2>Pourquoi Choisir Mes Savons ?</h2>
+    <ul>
+        <li><strong>Ingrédients Naturels :</strong> Mes savons sont fabriqués à partir d'huiles essentielles, de beurres et d'extraits botaniques de la plus haute qualité. Je bannis les produits chimiques agressifs afin de garantir une expérience douce et respectueuse pour votre peau.</li>
+        <li><strong>Fabrication Artisanale :</strong> Chaque savon est soigneusement élaboré à la main, en utilisant des techniques artisanales qui préservent les propriétés naturelles des ingrédients. Chaque pièce est unique, à l'image de l'attention que j'y porte.</li>
+        <li><strong>Variété de Parfums :</strong> Explorez une gamme de savons allant des senteurs florales apaisantes aux arômes fruités vivifiants. Chaque savon est conçu pour offrir une expérience sensorielle unique et mémorable.</li>
+        <li><strong>Emballage Écologique :</strong> Je suis résolument engagé dans la réduction de mon empreinte écologique. Mes emballages sont recyclables et conçus dans le respect de l'environnement.</li>
+    </ul>
+</div>
+
+<div class="container my-5">
+    <h2>Mes Produits</h2>
+    <ul>
+        <li><strong>Savons Hydratants :</strong> Offrez à votre peau douceur et nutrition.</li>
+        <li><strong>Savons Exfoliants :</strong> Profitez d'un gommage naturel et efficace pour une peau éclatante.</li>
+        <li><strong>Savons Parfumés :</strong> Ressentez la fraîcheur tout au long de la journée avec nos senteurs envoûtantes.</li>
+        <li><strong>Savons Sur Mesure :</strong> Créez votre propre savon personnalisé selon vos préférences et vos besoins.</li>
+    </ul>
+</div>
+<!-- Conteneur des produits en vedette -->
+<div class="container my-5">
+    <h2 class="text-center">Produits en Vedette</h2>
+    <div class="row">
+        @foreach (var product in Model)
+
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@Url.Content("~/images/" + product.ImageUrl)" class="card-img" alt="@product.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                    </div>
                 </div>
             </div>
         }
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </div>
 
-<style>
-.carousel-img {
-    width: 100%;
-    height: 400px; /* Ajustez la hauteur selon vos besoins */
-    object-fit: cover; /* Assure que les images remplissent le conteneur sans déformation */
-}
-</style>
+<div class="container my-5">
+    <h2>Témoignages de Clients</h2>
+    <blockquote>
+        <p>"J'ai acheté des savons de Lily pour la première fois et je suis tombée amoureuse de leur parfum ! Ils laissent ma peau douce et hydratée." - <em>Marie</em></p>
+        <p>"Les savons faits maison sont magnifiques ! Je les offre en cadeau et tout le monde les adore." - <em>Paul</em></p>
+    </blockquote>
+</div>
+
+
+
+<div class="container my-5 text-center">
+    <h2>Inscrivez-vous à notre Newsletter</h2>
+    <p>Recevez les dernières nouvelles et des offres spéciales directement dans votre boîte mail.</p>
+    <form>
+        <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Votre adresse e-mail" aria-label="Votre adresse e-mail" required>
+            <button class="btn btn-primary" type="submit">S'inscrire</button>
+        </div>
+    </form>
+</div>
